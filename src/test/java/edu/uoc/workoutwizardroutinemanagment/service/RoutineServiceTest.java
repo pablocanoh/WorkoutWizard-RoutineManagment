@@ -1,9 +1,6 @@
 package edu.uoc.workoutwizardroutinemanagment.service;
 
-import edu.uoc.workoutwizardroutinemanagment.domain.Exercise;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseRole;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExperienceLevel;
+import edu.uoc.workoutwizardroutinemanagment.domain.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -20,7 +17,7 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(1, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, BACK, 1, 0);
@@ -34,7 +31,7 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(1, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(8, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, BACK, 1, 1);
@@ -48,7 +45,7 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(1, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(12, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, BACK, 1, 2);
@@ -63,13 +60,13 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(2, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, SHOULDERS, 1, 0);
         assertRolesByType(exercise, TRICEPS, 1, 0);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
         assertRolesByType(exercise, BICEPS, 1, 0);
@@ -83,13 +80,13 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(2, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, SHOULDERS, 1, 1);
         assertRolesByType(exercise, TRICEPS, 1, 1);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(8, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
         assertRolesByType(exercise, BICEPS, 1, 1);
@@ -103,13 +100,13 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(2, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(9, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, SHOULDERS, 1, 2);
         assertRolesByType(exercise, TRICEPS, 1, 2);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(12, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
         assertRolesByType(exercise, BICEPS, 1, 2);
@@ -124,17 +121,17 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(3, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, TRICEPS, 1, 0);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
         assertRolesByType(exercise, BICEPS, 1, 0);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 0);
         assertRolesByType(exercise, SHOULDERS, 1, 0);
@@ -147,17 +144,17 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(3, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, TRICEPS, 1, 1);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
         assertRolesByType(exercise, BICEPS, 1, 1);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 1);
         assertRolesByType(exercise, SHOULDERS, 1, 1);
@@ -170,17 +167,17 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(3, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, TRICEPS, 1, 2);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
         assertRolesByType(exercise, BICEPS, 1, 2);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(9, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 2);
         assertRolesByType(exercise, SHOULDERS, 1, 2);
@@ -194,22 +191,22 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(4, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, TRICEPS, 1, 0);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
         assertRolesByType(exercise, BICEPS, 1, 0);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 0);
         assertRolesByType(exercise, CORE, 1, 0);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 0);
     }
@@ -220,22 +217,22 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(4, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, TRICEPS, 1, 1);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
         assertRolesByType(exercise, BICEPS, 1, 1);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 1);
         assertRolesByType(exercise, CORE, 1, 1);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 1);
     }
@@ -246,22 +243,22 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(4, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, TRICEPS, 1, 2);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
         assertRolesByType(exercise, BICEPS, 1, 2);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 2);
         assertRolesByType(exercise, CORE, 1, 2);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 2);
     }
@@ -273,25 +270,25 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(5, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, TRICEPS, 1, 0);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 0);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 0);
         assertRolesByType(exercise, CORE, 1, 0);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, BICEPS, 1, 0);
@@ -303,25 +300,25 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(5, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, TRICEPS, 1, 1);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 1);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 1);
         assertRolesByType(exercise, CORE, 1, 1);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, BICEPS, 1, 1);
@@ -333,25 +330,25 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(5, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, TRICEPS, 1, 2);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 2);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 2);
         assertRolesByType(exercise, CORE, 1, 2);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, BICEPS, 1, 2);
@@ -364,29 +361,29 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(6, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 0);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 0);
         assertRolesByType(exercise, TRICEPS, 1, 0);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, CORE, 1, 0);
 
-        exercise = routine.get(5);
+        exercise = routine.getBlocks().get(5).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
         assertRolesByType(exercise, BICEPS, 1, 0);
@@ -398,29 +395,29 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(6, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 1);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 1);
         assertRolesByType(exercise, TRICEPS, 1, 1);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, CORE, 1, 1);
 
-        exercise = routine.get(5);
+        exercise = routine.getBlocks().get(5).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
         assertRolesByType(exercise, BICEPS, 1, 1);
@@ -432,29 +429,29 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(6, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 2);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 2);
         assertRolesByType(exercise, TRICEPS, 1, 2);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, CORE, 1, 2);
 
-        exercise = routine.get(5);
+        exercise = routine.getBlocks().get(5).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
         assertRolesByType(exercise, BICEPS, 1, 2);
@@ -467,33 +464,33 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(7, ExperienceLevel.BEGINNER);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 0);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(1, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 0);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, TRICEPS, 1, 0);
         assertRolesByType(exercise, CORE, 1, 0);
 
-        exercise = routine.get(5);
+        exercise = routine.getBlocks().get(5).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 0);
         assertRolesByType(exercise, BICEPS, 1, 0);
 
-        exercise = routine.get(6);
+        exercise = routine.getBlocks().get(6).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 0);
         assertRolesByType(exercise, LEGS, 1, 0);
@@ -505,33 +502,33 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(7, ExperienceLevel.INTERMEDIATE);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 1);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(2, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 1);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, TRICEPS, 1, 1);
         assertRolesByType(exercise, CORE, 1, 1);
 
-        exercise = routine.get(5);
+        exercise = routine.getBlocks().get(5).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 1);
         assertRolesByType(exercise, BICEPS, 1, 1);
 
-        exercise = routine.get(6);
+        exercise = routine.getBlocks().get(6).getExercises();
         assertEquals(4, exercise.size());
         assertRolesByType(exercise, BACK, 1, 1);
         assertRolesByType(exercise, LEGS, 1, 1);
@@ -543,39 +540,39 @@ public class RoutineServiceTest {
         var routine = RoutineService.generateRoutine(7, ExperienceLevel.ADVANCED);
 
         // then
-        var exercise = routine.get(0);
+        var exercise = routine.getBlocks().get(0).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
 
-        exercise = routine.get(1);
+        exercise = routine.getBlocks().get(1).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
 
-        exercise = routine.get(2);
+        exercise = routine.getBlocks().get(2).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, LEGS, 1, 2);
 
-        exercise = routine.get(3);
+        exercise = routine.getBlocks().get(3).getExercises();
         assertEquals(3, exercise.size());
         assertRolesByType(exercise, SHOULDERS, 1, 2);
 
-        exercise = routine.get(4);
+        exercise = routine.getBlocks().get(4).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, TRICEPS, 1, 2);
         assertRolesByType(exercise, CORE, 1, 2);
 
-        exercise = routine.get(5);
+        exercise = routine.getBlocks().get(5).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, CHEST, 1, 2);
         assertRolesByType(exercise, BICEPS, 1, 2);
 
-        exercise = routine.get(6);
+        exercise = routine.getBlocks().get(6).getExercises();
         assertEquals(6, exercise.size());
         assertRolesByType(exercise, BACK, 1, 2);
         assertRolesByType(exercise, LEGS, 1, 2);
     }
 
-    void assertRolesByType(List<Exercise> routine, ExerciseType type, int main, int complementary) {
+    void assertRolesByType(List<ExerciseWithReps> routine, ExerciseType type, int main, int complementary) {
         assertFalse(routine.isEmpty());
         var mainExercise = routine.stream()
                 .filter(e -> e.getType() == type && e.getRole() == ExerciseRole.MAIN)

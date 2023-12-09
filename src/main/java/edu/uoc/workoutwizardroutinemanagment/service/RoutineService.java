@@ -3,7 +3,10 @@ package edu.uoc.workoutwizardroutinemanagment.service;
 import edu.uoc.workoutwizardroutinemanagment.domain.Exercise;
 import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseRole;
 import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType;
+import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseWithReps;
 import edu.uoc.workoutwizardroutinemanagment.domain.ExperienceLevel;
+import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
+import edu.uoc.workoutwizardroutinemanagment.domain.RoutineDay;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -39,21 +42,23 @@ public class RoutineService {
                     ));
 
 
-    public static List<List<Exercise>> generateRoutine(int trainingDays, ExperienceLevel level) {
-        List<List<Exercise>> routine = new ArrayList<>();
+    public static Routine generateRoutine(int trainingDays, ExperienceLevel level) {
+        List<RoutineDay> routineDays = new ArrayList<>();
 
         Map<Integer, Set<ExerciseType>> schedule = allocateMuscleGroups(trainingDays);
         for (int day = 1; day <= trainingDays; day++) {
-            List<Exercise> dayRoutine = new ArrayList<>();
+            List<ExerciseWithReps> dayRoutine = new ArrayList<>();
             Set<ExerciseType> muscleGroups = schedule.get(day);
             for (ExerciseType group : muscleGroups) {
                 dayRoutine.addAll(selectExercisesForGroup(group, level));
             }
 
-            routine.add(dayRoutine);
+            routineDays.add(RoutineDay.builder()
+                    .exercises(dayRoutine)
+                    .build());
         }
 
-        return routine;
+        return Routine.builder().blocks(routineDays).build();
     }
 
     private static Map<Integer, Set<ExerciseType>> allocateMuscleGroups(int days) {
@@ -96,12 +101,18 @@ public class RoutineService {
         };
     }
 
-    private static Collection<Exercise> selectExercisesForGroup(ExerciseType group, ExperienceLevel level) {
-        return switch (level) {
+    private static Collection<ExerciseWithReps> selectExercisesForGroup(ExerciseType group, ExperienceLevel level) {
+        final var exercises = switch (level) {
             case BEGINNER -> selectExercisesForGroupBeginner(group);
             case INTERMEDIATE -> selectExercisesForGroupIntermediate(group);
             case ADVANCED -> selectExercisesForGroupAdvanced(group);
         };
+
+        return exercises.stream().map(ex -> ExerciseWithReps.builder()
+                .exercise(ex)
+                .withExpertise(level)
+                .build()
+        ).collect(Collectors.toList());
     }
 
     private static Collection<Exercise> selectExercisesForGroupAdvanced(ExerciseType group) {

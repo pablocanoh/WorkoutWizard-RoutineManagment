@@ -14,6 +14,7 @@ import lombok.Setter;
 public class ExerciseWithReps {
 
     private ExerciseType type;
+    private ExerciseRole role;
     private String name;
     private String description;
     private int sets;
@@ -26,10 +27,11 @@ public class ExerciseWithReps {
         private int sets;
         private int reps;
 
-        public ExerciseWithRepsBuilder type(Exercise exercise) {
+        public ExerciseWithRepsBuilder exercise(Exercise exercise) {
             this.type = exercise.getType();
             this.name = exercise.getName();
             this.description = exercise.getDescription();
+            this.role = exercise.getRole();
             return this;
         }
 
