@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,5 +26,11 @@ public class RoutineController {
     @GetMapping("/exercise")
     public Map<ExerciseType, List<ExerciseResponse>> exercise() {
         return ExerciseService.getExercisesByType();
+    }
+
+    @PostMapping
+    public UUID create(@RequestBody Routine routine) {
+        System.out.println(routine);
+        return UUID.randomUUID();
     }
 }

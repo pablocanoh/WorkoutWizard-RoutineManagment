@@ -53,12 +53,10 @@ public class RoutineService {
                 dayRoutine.addAll(selectExercisesForGroup(group, level));
             }
 
-            routineDays.add(RoutineDay.builder()
-                    .exercises(dayRoutine)
-                    .build());
+            routineDays.add(new RoutineDay(dayRoutine));
         }
 
-        return Routine.builder().blocks(routineDays).build();
+        return new Routine(routineDays);
     }
 
     private static Map<Integer, Set<ExerciseType>> allocateMuscleGroups(int days) {
