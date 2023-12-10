@@ -21,6 +21,6 @@ public class RoutineDay {
     private UUID id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "exercise_id")
+    @JoinColumn(name = "routine_day_id")
     private List<ExerciseWithReps> exercises;
 }

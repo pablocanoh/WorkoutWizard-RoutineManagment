@@ -14,6 +14,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "exercises")
 @Getter
@@ -25,7 +27,7 @@ public class ExerciseWithReps {
 
     @Id
     @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "type", nullable = false)
     private ExerciseType type;

@@ -17,7 +17,7 @@ import java.util.UUID;
 @Builder
 public class Routine {
     @Id
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "id", columnDefinition = "uuid", nullable = false)
     private UUID id;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

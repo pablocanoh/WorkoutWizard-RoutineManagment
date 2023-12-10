@@ -121,6 +121,7 @@ public class RoutineService {
         };
 
         return exercises.stream().map(ex -> ExerciseWithReps.builder()
+                .id(UUID.randomUUID())
                 .exercise(ex)
                 .withExpertise(level)
                 .build()

@@ -6,6 +6,7 @@ import com.example.routineclient.dtos.ExperienceLevel;
 import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.service.ExerciseService;
 import edu.uoc.workoutwizardroutinemanagment.service.RoutineService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,9 @@ import java.util.UUID;
 @CrossOrigin(origins = "*")
 @RequestMapping("/routine")
 public class RoutineController {
+
+    @Autowired
+    private RoutineService routineService;
 
     @GetMapping("/suggest")
     public Routine suggest(@RequestParam ExperienceLevel experienceLevel, @RequestParam int daysPerWeek) {
@@ -29,7 +33,6 @@ public class RoutineController {
 
     @PostMapping
     public UUID create(@RequestBody Routine routine) {
-        System.out.println(routine);
-        return UUID.randomUUID();
+        return routineService.save(routine);
     }
 }
