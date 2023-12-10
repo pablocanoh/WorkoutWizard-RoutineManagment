@@ -1,1 +1,3 @@
 rootProject.name = 'WorkoutWizard-RoutineWorkout'
+include(':routine-core')
+include(':routine-client')
