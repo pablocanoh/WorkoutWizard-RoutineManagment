@@ -1,6 +1,5 @@
-package edu.uoc.workoutwizardroutinemanagment.controller.dtos;
+package com.example.routineclient.dtos;
 
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType;
 import lombok.Builder;
 import lombok.Getter;
 

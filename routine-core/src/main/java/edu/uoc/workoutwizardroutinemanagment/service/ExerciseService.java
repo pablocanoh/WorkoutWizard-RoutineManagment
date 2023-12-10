@@ -1,8 +1,8 @@
 package edu.uoc.workoutwizardroutinemanagment.service;
 
-import edu.uoc.workoutwizardroutinemanagment.controller.dtos.ExerciseResponse;
-import edu.uoc.workoutwizardroutinemanagment.domain.Exercise;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType;
+import com.example.routineclient.dtos.Exercise;
+import com.example.routineclient.dtos.ExerciseResponse;
+import com.example.routineclient.dtos.ExerciseType;
 
 import java.util.Arrays;
 import java.util.List;

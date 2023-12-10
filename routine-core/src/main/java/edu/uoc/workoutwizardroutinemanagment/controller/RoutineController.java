@@ -1,9 +1,8 @@
 package edu.uoc.workoutwizardroutinemanagment.controller;
 
-import edu.uoc.workoutwizardroutinemanagment.controller.dtos.ExerciseResponse;
-import edu.uoc.workoutwizardroutinemanagment.domain.Exercise;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExperienceLevel;
+import com.example.routineclient.dtos.ExerciseResponse;
+import com.example.routineclient.dtos.ExerciseType;
+import com.example.routineclient.dtos.ExperienceLevel;
 import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.service.ExerciseService;
 import edu.uoc.workoutwizardroutinemanagment.service.RoutineService;

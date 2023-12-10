@@ -1,4 +1,4 @@
-package edu.uoc.workoutwizardroutinemanagment.domain;
+package com.example.routineclient.dtos;
 
 import lombok.Getter;
 

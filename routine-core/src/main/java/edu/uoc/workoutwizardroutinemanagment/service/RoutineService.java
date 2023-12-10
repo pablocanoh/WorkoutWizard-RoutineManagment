@@ -1,25 +1,36 @@
 package edu.uoc.workoutwizardroutinemanagment.service;
 
-import edu.uoc.workoutwizardroutinemanagment.domain.Exercise;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseRole;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType;
+import com.example.routineclient.dtos.Exercise;
+import com.example.routineclient.dtos.ExerciseRole;
+import com.example.routineclient.dtos.ExerciseType;
+import com.example.routineclient.dtos.ExperienceLevel;
 import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseWithReps;
-import edu.uoc.workoutwizardroutinemanagment.domain.ExperienceLevel;
 import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.domain.RoutineDay;
+import edu.uoc.workoutwizardroutinemanagment.repositories.RoutineRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static edu.uoc.workoutwizardroutinemanagment.domain.ExerciseRole.COMPLEMENTARY;
-import static edu.uoc.workoutwizardroutinemanagment.domain.ExerciseRole.MAIN;
-import static edu.uoc.workoutwizardroutinemanagment.domain.ExerciseType.*;
+import static com.example.routineclient.dtos.ExerciseRole.COMPLEMENTARY;
+import static com.example.routineclient.dtos.ExerciseRole.MAIN;
+import static com.example.routineclient.dtos.ExerciseType.*;
 import static java.util.stream.Collectors.groupingBy;
 
 @Service
 public class RoutineService {
+
+    @Autowired
+    private RoutineRepository routineRepository;
 
     private static final Map<ExerciseType, Map<ExerciseRole, List<Exercise>>> typeRoleMap =
             Stream.of(Exercise.values())
@@ -41,6 +52,9 @@ public class RoutineService {
                             )
                     ));
 
+    public UUID save(Routine routine) {
+        return routineRepository.save(routine).getId();
+    }
 
     public static Routine generateRoutine(int trainingDays, ExperienceLevel level) {
         List<RoutineDay> routineDays = new ArrayList<>();
@@ -53,10 +67,10 @@ public class RoutineService {
                 dayRoutine.addAll(selectExercisesForGroup(group, level));
             }
 
-            routineDays.add(new RoutineDay(dayRoutine));
+            routineDays.add(RoutineDay.builder().id(UUID.randomUUID()).exercises(dayRoutine).build());
         }
 
-        return new Routine(routineDays);
+        return Routine.builder().id(UUID.randomUUID()).blocks(routineDays).build();
     }
 
     private static Map<Integer, Set<ExerciseType>> allocateMuscleGroups(int days) {

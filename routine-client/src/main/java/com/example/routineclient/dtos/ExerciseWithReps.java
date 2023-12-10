@@ -1,21 +1,7 @@
-package edu.uoc.workoutwizardroutinemanagment.domain;
+package com.example.routineclient.dtos;
 
-import com.example.routineclient.dtos.Exercise;
-import com.example.routineclient.dtos.ExerciseRole;
-import com.example.routineclient.dtos.ExerciseType;
-import com.example.routineclient.dtos.ExperienceLevel;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Entity
-@Table(name = "exercises")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,26 +9,11 @@ import lombok.Setter;
 @Builder
 public class ExerciseWithReps {
 
-    @Id
-    @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
-
-    @Column(name = "type", nullable = false)
     private ExerciseType type;
-
-    @Column(name = "role", nullable = false)
     private ExerciseRole role;
-
-    @Column(name = "name", nullable = false)
     private String name;
-
-    @Column(name = "description", nullable = false)
     private String description;
-
-    @Column(name = "sets", nullable = false)
     private int sets;
-
-    @Column(name = "reps", nullable = false)
     private int reps;
 
     public static class ExerciseWithRepsBuilder {
