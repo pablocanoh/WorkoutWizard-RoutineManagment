@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.example'
+group = 'edu.uoc'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -34,6 +34,8 @@ repositories {
 }
 
 dependencies {
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jackson}"
+    implementation "com.squareup.okhttp3:okhttp:${okhttp}"
     implementation "org.projectlombok:lombok:${lombok}"
     annotationProcessor "org.projectlombok:lombok:${lombok}"
 }

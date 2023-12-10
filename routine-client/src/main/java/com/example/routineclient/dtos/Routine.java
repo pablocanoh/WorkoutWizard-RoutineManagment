@@ -1,5 +1,6 @@
 package com.example.routineclient.dtos;
 
 import java.util.List;
+import java.util.UUID;
 
-public record Routine(List<RoutineDay> blocks) { }
+public record Routine(UUID id, List<RoutineDay> blocks) { }

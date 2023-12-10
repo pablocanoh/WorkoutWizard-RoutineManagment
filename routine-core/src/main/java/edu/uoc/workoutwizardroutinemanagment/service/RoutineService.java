@@ -157,4 +157,8 @@ public class RoutineService {
         exercises.remove(index);
         return exercise;
     }
+
+    public Routine get(UUID routineId) {
+        return routineRepository.findById(routineId).orElseThrow();
+    }
 }

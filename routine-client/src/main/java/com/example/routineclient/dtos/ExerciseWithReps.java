@@ -2,6 +2,8 @@ package com.example.routineclient.dtos;
 
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -9,6 +11,7 @@ import lombok.*;
 @Builder
 public class ExerciseWithReps {
 
+    private UUID id;
     private ExerciseType type;
     private ExerciseRole role;
     private String name;
