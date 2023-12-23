@@ -22,7 +22,7 @@ public class Routine {
     private UUID id;
 
     @Column(nullable = false)
-    private Instant createdAt;
+    private Instant createdDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "routine_id")

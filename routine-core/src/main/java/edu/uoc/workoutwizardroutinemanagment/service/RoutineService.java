@@ -12,13 +12,7 @@ import edu.uoc.workoutwizardroutinemanagment.repositories.RoutineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -166,5 +160,9 @@ public class RoutineService {
 
     public Routine get(UUID routineId) {
         return routineRepository.findById(routineId).orElseThrow();
+    }
+
+    public Optional<Routine> getLatest() {
+        return routineRepository.findTopByOrderByCreatedDateDesc();
     }
 }

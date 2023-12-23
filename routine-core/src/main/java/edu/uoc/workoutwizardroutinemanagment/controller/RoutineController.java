@@ -4,6 +4,7 @@ import com.example.routineclient.dtos.ExerciseResponse;
 import com.example.routineclient.dtos.ExerciseType;
 import com.example.routineclient.dtos.ExperienceLevel;
 import com.example.routineclient.dtos.Routine;
+import edu.uoc.workoutwizardroutinemanagment.mappers.RoutineDomainToClient;
 import edu.uoc.workoutwizardroutinemanagment.service.ExerciseService;
 import edu.uoc.workoutwizardroutinemanagment.service.RoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import static edu.uoc.workoutwizardroutinemanagment.mappers.RoutineDomainToClient.transform;
@@ -31,6 +33,12 @@ public class RoutineController {
     @GetMapping("/{routineId}")
     public Routine get(@PathVariable UUID routineId) {
         return transform(routineService.get(routineId));
+    }
+
+
+    @GetMapping("/latest")
+    public Optional<Routine> getLates() {
+        return routineService.getLatest().map(RoutineDomainToClient::transform);
     }
 
     @GetMapping("/exercise")

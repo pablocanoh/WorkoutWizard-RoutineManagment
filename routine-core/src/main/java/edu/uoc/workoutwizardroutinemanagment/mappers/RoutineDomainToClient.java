@@ -40,7 +40,7 @@ public class RoutineDomainToClient {
                 .blocks(routine.blocks().stream()
                         .map(RoutineDomainToClient::transform)
                         .toList())
-                .createdAt(Instant.now())
+                .createdDate(Instant.now())
                 .build();
     }
 
