@@ -4,6 +4,7 @@ import com.example.routineclient.dtos.Exercise;
 import com.example.routineclient.dtos.ExerciseRole;
 import com.example.routineclient.dtos.ExerciseType;
 import com.example.routineclient.dtos.ExperienceLevel;
+import com.example.workoutclient.dto.WorkoutClient;
 import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseWithReps;
 import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.domain.RoutineDay;
@@ -32,6 +33,9 @@ public class RoutineService {
     @Autowired
     private RoutineRepository routineRepository;
 
+    @Autowired
+    private WorkoutClient workoutClient;
+
     private static final Map<ExerciseType, Map<ExerciseRole, List<Exercise>>> typeRoleMap =
             Stream.of(Exercise.values())
                     .collect(groupingBy(
@@ -53,7 +57,9 @@ public class RoutineService {
                     ));
 
     public UUID save(Routine routine) {
-        return routineRepository.save(routine).getId();
+        final var newRoutineId = routineRepository.save(routine).getId();
+        workoutClient.createWorkoutDiary(newRoutineId);
+        return newRoutineId;
     }
 
     public static Routine generateRoutine(int trainingDays, ExperienceLevel level) {

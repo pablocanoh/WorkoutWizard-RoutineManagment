@@ -5,6 +5,8 @@ import edu.uoc.workoutwizardroutinemanagment.domain.ExerciseWithReps;
 import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.domain.RoutineDay;
 
+import java.time.Instant;
+
 public class RoutineDomainToClient {
     private RoutineDomainToClient () {}
 
@@ -33,9 +35,13 @@ public class RoutineDomainToClient {
     }
 
     public static Routine transform(com.example.routineclient.dtos.Routine routine) {
-        return new Routine(routine.id(), routine.blocks().stream()
-                .map(RoutineDomainToClient::transform)
-                .toList());
+        return Routine.builder()
+                .id(routine.id())
+                .blocks(routine.blocks().stream()
+                        .map(RoutineDomainToClient::transform)
+                        .toList())
+                .createdAt(Instant.now())
+                .build();
     }
 
     public static RoutineDay transform(com.example.routineclient.dtos.RoutineDay routine) {

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,6 +20,9 @@ public class Routine {
     @Id
     @Column(name = "id", columnDefinition = "uuid", nullable = false)
     private UUID id;
+
+    @Column(nullable = false)
+    private Instant createdAt;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "routine_id")
