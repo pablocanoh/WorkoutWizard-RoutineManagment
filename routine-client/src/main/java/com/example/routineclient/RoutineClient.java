@@ -61,7 +61,7 @@ public class RoutineClient {
     public UUID create(Routine routine, String jwtToken) throws JsonProcessingException {
         final var request = new Request.Builder()
                 .url(baseUrl + "/routine")
-                .addHeader("Authorization", "Bearer " + jwtToken)
+                .addHeader("Authorization", jwtToken)
                 .post(okhttp3.RequestBody.create(
                         objectMapper.writeValueAsString(routine),
                         okhttp3.MediaType.parse("application/json")))

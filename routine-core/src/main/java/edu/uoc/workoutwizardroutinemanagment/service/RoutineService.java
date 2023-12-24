@@ -50,9 +50,9 @@ public class RoutineService {
                             )
                     ));
 
-    public UUID save(Routine routine) {
+    public UUID save(Routine routine, String jwtToken) {
         final var newRoutineId = routineRepository.save(routine).getId();
-        workoutClient.createWorkoutDiary(newRoutineId);
+        workoutClient.createWorkoutDiary(newRoutineId, jwtToken);
         return newRoutineId;
     }
 

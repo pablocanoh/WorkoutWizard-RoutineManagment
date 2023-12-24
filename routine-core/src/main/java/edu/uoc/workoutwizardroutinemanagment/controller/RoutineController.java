@@ -55,6 +55,6 @@ public class RoutineController {
     @PostMapping
     public UUID create(@RequestBody Routine routine, @RequestHeader("Authorization") String jwtToken) {
         final var userId = jwtTokenUtil.getUserIdFromToken(jwtToken);
-        return routineService.save(transform(routine, userId));
+        return routineService.save(transform(routine, userId), jwtToken);
     }
 }
