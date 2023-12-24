@@ -5,6 +5,7 @@ import com.example.routineclient.dtos.ExerciseType;
 import com.example.routineclient.dtos.ExperienceLevel;
 import com.example.routineclient.dtos.Routine;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -75,17 +76,27 @@ public class RoutineClient {
     }
 
     public Map<ExerciseType, List<ExerciseResponse>> getExercise() {
-        final var request = new Request.Builder()
+        Request request = new Request.Builder()
                 .url(baseUrl + "/routine/exercise")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
 
-            assert response.body() != null;
-            return objectMapper.readValue(response.body().byteStream(), Map.class);
+            if (response.body() == null) {
+                throw new IOException("Response body is null");
+            }
+
+            // Specify the correct type information for deserialization
+            TypeReference<Map<ExerciseType, List<ExerciseResponse>>> typeRef
+                    = new TypeReference<>() {
+            };
+            return objectMapper.readValue(response.body().byteStream(), typeRef);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            // Consider logging the error or throw a more specific exception
+            throw new RuntimeException("Error fetching exercises: " + e.getMessage(), e);
         }
     }
 
