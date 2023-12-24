@@ -10,5 +10,7 @@ import java.util.UUID;
 @Repository
 public interface RoutineRepository extends JpaRepository<Routine, UUID> {
 
-    Optional<Routine> findTopByOrderByCreatedDateDesc();
+    Optional<Routine> findFirstByUserIdOrderByCreatedDateDesc(UUID userId);
+
+    Optional<Routine> findByIdAndUserId(UUID id, UUID userId);
 }

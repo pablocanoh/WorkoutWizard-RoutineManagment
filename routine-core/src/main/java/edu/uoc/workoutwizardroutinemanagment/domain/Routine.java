@@ -22,6 +22,9 @@ public class Routine {
     private UUID id;
 
     @Column(nullable = false)
+    private UUID userId;
+
+    @Column(nullable = false)
     private Instant createdDate;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

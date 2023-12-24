@@ -6,6 +6,7 @@ import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.domain.RoutineDay;
 
 import java.time.Instant;
+import java.util.UUID;
 
 public class RoutineDomainToClient {
     private RoutineDomainToClient () {}
@@ -34,9 +35,10 @@ public class RoutineDomainToClient {
         );
     }
 
-    public static Routine transform(com.example.routineclient.dtos.Routine routine) {
+    public static Routine transform(com.example.routineclient.dtos.Routine routine, UUID userId) {
         return Routine.builder()
                 .id(routine.id())
+                .userId(userId)
                 .blocks(routine.blocks().stream()
                         .map(RoutineDomainToClient::transform)
                         .toList())

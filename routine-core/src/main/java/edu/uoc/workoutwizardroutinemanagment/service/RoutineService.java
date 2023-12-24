@@ -158,11 +158,11 @@ public class RoutineService {
         return exercise;
     }
 
-    public Routine get(UUID routineId) {
-        return routineRepository.findById(routineId).orElseThrow();
+    public Routine get(UUID routineId, UUID userId) {
+        return routineRepository.findByIdAndUserId(routineId, userId).orElseThrow();
     }
 
-    public Optional<Routine> getLatest() {
-        return routineRepository.findTopByOrderByCreatedDateDesc();
+    public Optional<Routine> getLatest(UUID userId) {
+        return routineRepository.findFirstByUserIdOrderByCreatedDateDesc(userId);
     }
 }

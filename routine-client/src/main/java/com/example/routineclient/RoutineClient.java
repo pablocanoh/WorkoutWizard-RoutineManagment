@@ -27,8 +27,9 @@ public class RoutineClient {
         this.baseUrl = baseUrl;
     }
 
-    public Routine getRoutine(UUID routineId) {
+    public Routine getRoutine(UUID routineId, String jwtToken) {
         final var request = new Request.Builder()
+                .addHeader("Authorization", jwtToken)
                 .url(baseUrl + "/routine/" + routineId)
                 .build();
 
@@ -57,9 +58,10 @@ public class RoutineClient {
         }
     }
 
-    public UUID create(Routine routine) throws JsonProcessingException {
+    public UUID create(Routine routine, String jwtToken) throws JsonProcessingException {
         final var request = new Request.Builder()
                 .url(baseUrl + "/routine")
+                .addHeader("Authorization", "Bearer " + jwtToken)
                 .post(okhttp3.RequestBody.create(
                         objectMapper.writeValueAsString(routine),
                         okhttp3.MediaType.parse("application/json")))
@@ -100,8 +102,9 @@ public class RoutineClient {
         }
     }
 
-    public Optional<Routine> getLatest() {
+    public Optional<Routine> getLatest(String  jwtToken) {
         final var request = new Request.Builder()
+                .addHeader("Authorization", jwtToken)
                 .url(baseUrl + "/routine/latest")
                 .build();
 
