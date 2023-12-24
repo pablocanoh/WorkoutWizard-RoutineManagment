@@ -14,10 +14,36 @@ java {
 repositories {
     mavenCentral()
     mavenLocal()
+    repositories {
+        maven {
+            name = 'WorkoutWizard-WorkoutManagement'
+            url = uri("https://maven.pkg.github.com/pablocanoh/WorkoutWizard-WorkoutManagement") // Reemplaza con tu usuario y repo
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+        maven {
+            name = 'GitHubPackages-WorkoutWizard-RoutineManagment'
+            url = uri("https://maven.pkg.github.com/pablocanoh/WorkoutWizard-RoutineManagment")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+        maven {
+            name = 'GitHubPackages-WorkoutWizard-commons'
+            url = uri("https://maven.pkg.github.com/pablocanoh/WorkoutWizard-commons")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
 }
 
 dependencies {
-    implementation("edu.uoc:WorkoutWizard-commons:1.0-SNAPSHOT")
+    implementation("edu.uoc:workoutwizard-commons:1.0-SNAPSHOT")
     implementation("edu.uoc:workout-client:${project.version}")
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
