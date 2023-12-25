@@ -6,6 +6,7 @@ import edu.uoc.workoutwizardroutinemanagment.domain.Routine;
 import edu.uoc.workoutwizardroutinemanagment.domain.RoutineDay;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 public class RoutineDomainToClient {
@@ -54,7 +55,7 @@ public class RoutineDomainToClient {
 
     public static ExerciseWithReps transform(com.example.routineclient.dtos.ExerciseWithReps exerciseWithReps) {
         return new ExerciseWithReps(
-                exerciseWithReps.getId(),
+                Optional.of(exerciseWithReps.getId()).orElse(UUID.randomUUID()),
                 exerciseWithReps.getType(),
                 exerciseWithReps.getRole(),
                 exerciseWithReps.getName(),

@@ -7,7 +7,6 @@ import com.example.routineclient.dtos.Routine;
 import edu.uoc.workoutwizardroutinemanagment.mappers.RoutineDomainToClient;
 import edu.uoc.workoutwizardroutinemanagment.service.ExerciseService;
 import edu.uoc.workoutwizardroutinemanagment.service.RoutineService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import uoc.edu.commons.JwtTokenUtil;
