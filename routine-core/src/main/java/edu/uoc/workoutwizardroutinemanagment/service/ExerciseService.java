@@ -16,6 +16,8 @@ public class ExerciseService {
         return Arrays.stream(Exercise.values()).map(exercise -> ExerciseResponse.builder()
                 .type(exercise.getType())
                 .name(exercise.getName())
+                .description(exercise.getDescription())
+                .role(exercise.getRole())
                 .build())
                 .collect(groupingBy(ExerciseResponse::getType));
     }

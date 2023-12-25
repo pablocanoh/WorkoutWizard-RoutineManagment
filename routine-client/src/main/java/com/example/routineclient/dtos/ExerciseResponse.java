@@ -12,4 +12,6 @@ import lombok.NoArgsConstructor;
 public class ExerciseResponse {
     private ExerciseType type;
     private String name;
+    private String description;
+    private ExerciseRole role;
 }

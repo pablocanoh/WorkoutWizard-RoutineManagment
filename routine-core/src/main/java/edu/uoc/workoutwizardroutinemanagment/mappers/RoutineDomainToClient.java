@@ -55,7 +55,7 @@ public class RoutineDomainToClient {
 
     public static ExerciseWithReps transform(com.example.routineclient.dtos.ExerciseWithReps exerciseWithReps) {
         return new ExerciseWithReps(
-                Optional.of(exerciseWithReps.getId()).orElse(UUID.randomUUID()),
+                Optional.ofNullable(exerciseWithReps.getId()).orElse(UUID.randomUUID()),
                 exerciseWithReps.getType(),
                 exerciseWithReps.getRole(),
                 exerciseWithReps.getName(),
