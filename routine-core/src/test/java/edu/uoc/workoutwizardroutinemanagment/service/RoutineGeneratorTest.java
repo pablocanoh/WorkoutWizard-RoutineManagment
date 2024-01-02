@@ -11,13 +11,15 @@ import java.util.List;
 import static com.example.routineclient.dtos.ExerciseType.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RoutineServiceTest {
+public class RoutineGeneratorTest {
+
+    private final RoutineGenerator routineGenerator = new RoutineGenerator();
 
     // Frequency 1
     @Test
     void testRoutineGeneration_for_BEGGINER_with_frequency_1() {
         // given when
-        var routine = RoutineService.generateRoutine(1, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(1, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -31,7 +33,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_1() {
         // given when
-        var routine = RoutineService.generateRoutine(1, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(1, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -45,7 +47,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCED_with_frequency_1() {
         // given when
-        var routine = RoutineService.generateRoutine(1, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(1, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -60,7 +62,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_BEGGINER_with_frequency_2() {
         // given when
-        var routine = RoutineService.generateRoutine(2, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(2, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -80,7 +82,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_2() {
         // given when
-        var routine = RoutineService.generateRoutine(2, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(2, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -100,7 +102,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCED_with_frequency_2() {
         // given when
-        var routine = RoutineService.generateRoutine(2, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(2, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -121,7 +123,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_BEGINNER_with_frequency_3() {
         // given when
-        var routine = RoutineService.generateRoutine(3, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(3, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -144,7 +146,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_3() {
         // given when
-        var routine = RoutineService.generateRoutine(3, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(3, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -167,7 +169,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCE_with_frequency_3() {
         // given when
-        var routine = RoutineService.generateRoutine(3, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(3, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -191,7 +193,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_BEGINNER_with_frequency_4() {
         // given when
-        var routine = RoutineService.generateRoutine(4, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(4, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -217,7 +219,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_4() {
         // given when
-        var routine = RoutineService.generateRoutine(4, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(4, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -243,7 +245,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCE_with_frequency_4() {
         // given when
-        var routine = RoutineService.generateRoutine(4, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(4, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -270,7 +272,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_BEGINNER_with_frequency_5() {
         // given when
-        var routine = RoutineService.generateRoutine(5, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(5, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -300,7 +302,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_5() {
         // given when
-        var routine = RoutineService.generateRoutine(5, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(5, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -330,7 +332,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCE_with_frequency_5() {
         // given when
-        var routine = RoutineService.generateRoutine(5, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(5, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -361,7 +363,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_BEGINNER_with_frequency_6() {
         // given when
-        var routine = RoutineService.generateRoutine(6, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(6, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -395,7 +397,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_6() {
         // given when
-        var routine = RoutineService.generateRoutine(6, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(6, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -429,7 +431,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCE_with_frequency_6() {
         // given when
-        var routine = RoutineService.generateRoutine(6, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(6, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -464,7 +466,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_BEGINNER_with_frequency_7() {
         // given when
-        var routine = RoutineService.generateRoutine(7, ExperienceLevel.BEGINNER);
+        var routine = routineGenerator.generateRoutine(7, ExperienceLevel.BEGINNER);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -502,7 +504,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_INTERMEDIATE_with_frequency_7() {
         // given when
-        var routine = RoutineService.generateRoutine(7, ExperienceLevel.INTERMEDIATE);
+        var routine = routineGenerator.generateRoutine(7, ExperienceLevel.INTERMEDIATE);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
@@ -540,7 +542,7 @@ public class RoutineServiceTest {
     @Test
     void testRoutineGeneration_for_ADVANCE_with_frequency_7() {
         // given when
-        var routine = RoutineService.generateRoutine(7, ExperienceLevel.ADVANCED);
+        var routine = routineGenerator.generateRoutine(7, ExperienceLevel.ADVANCED);
 
         // then
         var exercise = routine.getBlocks().get(0).getExercises();
