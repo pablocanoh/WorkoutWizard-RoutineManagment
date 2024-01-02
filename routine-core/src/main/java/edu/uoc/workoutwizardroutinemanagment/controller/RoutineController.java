@@ -30,7 +30,7 @@ public class RoutineController {
 
     @GetMapping("/suggest")
     public Routine suggest(@RequestParam ExperienceLevel experienceLevel, @RequestParam int daysPerWeek) {
-        return transform(RoutineService.generateRoutine(daysPerWeek, experienceLevel));
+        return transform(routineService.generateRoutine(daysPerWeek, experienceLevel));
     }
 
     @GetMapping("/{routineId}")
